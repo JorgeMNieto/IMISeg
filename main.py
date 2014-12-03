@@ -1,14 +1,32 @@
+import numpy as np
 f = open('test.ply', 'r')
-
-print f.read()
 
 points = []
 
-stop = False
 length = 0
+footer_length = 0
+header_length = 0;
 
-while not stop:
-    a = f.readline().find('element vertex')
+iterations_limit = 20
+iterations = 0;
+while True:
+    iterations += 1
+    a = f.readline()
+    if 'element vertex' in a:
+        b = a.replace('element vertex', '')
+        b.strip()
+        length = int(b)
 
-    if a is not None:
-        length = float()
+    if 'element face' in a:
+        b = a.replace('element face', '')
+        b.strip()
+        footer_length = int(b)
+
+    if iterations == iterations_limit:
+        break
+
+    if 'end_header' in a:
+        header_length = iterations
+        points = np.genfromtxt('test.ply', skip_header=header_length, skip_footer=footer_length)
+        print points
+        break
