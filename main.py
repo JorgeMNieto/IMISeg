@@ -1,5 +1,11 @@
+import sys
 import numpy as np
-f = open('test.ply', 'r')
+
+if len(sys.argv) < 2:
+    sys.exit('Usage: main.py <file_path>')
+
+file_path = str(sys.argv[1])
+f = open(file_path, 'r')
 
 points = []
 
@@ -25,6 +31,6 @@ while True:
 
     if 'end_header' in a:
         header_length = iterations
-        points = np.genfromtxt('test.ply', skip_header=header_length, skip_footer=footer_length)
-        print points
+        points = np.genfromtxt(file_path, skip_header=header_length, skip_footer=footer_length)
+        print(points)
         break
