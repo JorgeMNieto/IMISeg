@@ -14,13 +14,11 @@ while True:
     a = f.readline()
     if 'element vertex' in a:
         b = a.replace('element vertex', '')
-        b.strip()
-        length = int(b)
+        length = int(b.strip())
 
     if 'element face' in a:
         b = a.replace('element face', '')
-        b.strip()
-        footer_length = int(b)
+        footer_length = int(b.strip())
 
     if iterations == iterations_limit:
         break
