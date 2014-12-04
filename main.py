@@ -32,5 +32,8 @@ while in_header and iterations < iterations_limit:
         header_length = iterations
         in_header = False
 
+f.close()
+
 points = np.genfromtxt(file_path, skip_header=header_length, skip_footer=footer_length)
 print(points)
+
